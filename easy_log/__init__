@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# @Time : 2021/9/8 15:17
+# @Author :
+# @Email :
+from easy_log.set_log_config import use_config_form_log_config_module
+from easy_log import log_config_default
+from easy_log.monkey_print import nb_print, patch_print, reverse_patch_print,stdout_write,stderr_write,print_raw,is_main_process,only_print_on_main_process
+from easy_log.log_manager import LogManager, LoggerLevelSetterMixin, LoggerMixin, LoggerMixinDefaultWithFileHandler, get_logger, get_logger_with_filehanlder
+
+
+
+simple_logger = LogManager('simple').get_logger_and_add_handlers()
+defaul_logger = LogManager('defaul').get_logger_and_add_handlers(do_not_use_color_handler=True, formatter_template=7)
+default_file_logger = LogManager('default_file_logger').get_logger_and_add_handlers(log_filename='default_file_logger.log')
+
+
+
+
+if log_config_default.AUTO_PATCH_PRINT:
+    patch_print()
+else:
+    reverse_patch_print()
